@@ -1,12 +1,3 @@
----
-name: User story template
-about: Template for creating user stories for use in the Kanban board
-title: Feature request
-labels: ''
-assignees: ''
-
----
-
 **As a** [role]  
 **I need** [function]  
 **So that** [benefit]  

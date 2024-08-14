@@ -82,7 +82,7 @@ def read_accout(id):
     Reads an account
     This endpoint will read an Account based the id that is requested
     """
-    app.logger.info(f"Request to read an Accout with ID: {id}")
+    app.logger.info(f"Request to read an Account with ID: {id}")
     account = Account.find(id)
     if not account:
         abort(status.HTTP_404_NOT_FOUND, 
@@ -95,8 +95,20 @@ def read_accout(id):
 ######################################################################
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
-
-# ... place you code here to UPDATE an account ...
+@app.route("/accounts/<int:id>", methods=["PUT"])
+def update_account(id):
+    """
+    Updates an existing Account
+    This endpoint will update an Account based on the posted data
+    """
+    app.logger.info(f"Request to update an Account with ID: {id}")
+    account = Account.find(id)
+    if not account:
+        abort(status.HTTP_404_NOT_FOUND, 
+              f"Account with id [{id}] could not be found.")
+    account.deserialize(request.get_json())
+    account.update()
+    return make_response(account.serialize(), status.HTTP_200_OK)
 
 
 ######################################################################

@@ -86,7 +86,7 @@ def read_accout(id):
     app.logger.info(f"Request to read an Account with ID: {id}")
     account = Account.find(id)
     if not account:
-        abort(status.HTTP_404_NOT_FOUND, 
+        abort(status.HTTP_404_NOT_FOUND,
               f"Account with id [{id}] could not be found.")
     message = account.serialize()
     return make_response(
@@ -106,7 +106,7 @@ def update_account(id):
     app.logger.info(f"Request to update an Account with ID: {id}")
     account = Account.find(id)
     if not account:
-        abort(status.HTTP_404_NOT_FOUND, 
+        abort(status.HTTP_404_NOT_FOUND,
               f"Account with id [{id}] could not be found.")
     account.deserialize(request.get_json())
     account.update()
